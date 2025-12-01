@@ -1,0 +1,156 @@
+The goal for building a website is without its content 
+and its placing of elements in a specific way and a way 
+without fonts, colors and styles, a way to build this is needed.
+A way to strategize wich parts are considered and how to see
+a specific element or object and view these from a specific 
+perspective and where on which page.
+
+Because humans do not always know where to go or what is coming..
+Some of them will or do have a notion of how and where.
+But always it will have a mental end result as a mental snapshot
+in their own brain. They use this to describe too you what this
+is according to that. Because some or most default are missing
+no one can really formulate properly what to build and why.
+
+To help this process along some methods and processes need
+to be defined to help the formulating of thoughts and ideas
+into more concrete and defined ways of writing them down.
+
+By estabilshing a default way of seeing a picture mentually
+or virtually, I believe both human and machine are capable
+of doing this with in a 2 dimensional way of thinking.
+
+Any application or website consist out of the same things
+Its text, buttons, and media on each page and that application
+or website has one or multiple pages.
+That could be considered as the first rule for building apps.
+The structure for websites have been historically different,
+websites where originally designed to resemble a newspaper.
+
+Now with 3D and touchscreens a more defined and structured
+approach is warranted to make it easier to find components
+for the developer and AI on a page and adjust only the required
+parts if needed and where and which plages this component is changed.
+
+The bare 3D mental image is this: the domain/app/name is the
+container and in that container there are pages or 
+routes, including background function and connections, defined.
+These pages have default states for example as to which 
+url route they respond too or access, accessability and availability.
+These values are used to transform the full page or app as
+a whole instead of just the component, think about color theme
+or ltr/rtl.
+
+The page itself can be seen as a container itself too. 
+A cube in the cube of the app.
+here there are multiple components. But all components
+structurally the same, just with different purposes.
+
+The page and the components is what whe are working with now only.
+where the page could also be seen as a component itself, but
+a layer deeper. So layer one is the title/name/domain of the app.
+The second layer is the pages containers/components but also 
+the background functions and storage capabilities (client or server).
+
+The third layer containt the components of the page. Which is 
+where we left of previously.
+Now that we have established what a bare page 
+is (basically an empty index.html page with a public endpoint, for refence)
+We could look at common items that come chronologically and logically next in the
+building and visualising part of communicating that vision for the app or component.
+
+First for pages or the other storage (client or server) or backend function,
+it should be know where the component of the second layer will reside.
+Which would reference from this cube to the cube for each of the four designated 
+areas. Those would be a route, a server, a client and some 
+backend function including the error catching.
+
+Now if an object from the second layer gets referenced or from the third layer for
+that matter as a header with authentication as a component is touching both server, route and backend function.
+
+Other examples of common client actions and when to execute are
+defined with certain requirements. Like the url most contain ... but the 404
+should be the default page for all other non matching pages.
+
+For storage it is important what is save as a object that a object in the 
+fourth layer. This is because the data can be used for components in the second as well as 
+the third layer components.
+
+The components on the third layer can be only seen components and containers too. So both.
+But every component that is nested in a container is alway created in the fourth layer and show in the third.
+So the fourth layer contains now nested conponents or data objects.
+
+Common objects to find on a third layer would be for example
+a header, aside, main, section or footer.
+If for example a header is created as an object is could also be
+used on other pages by just referencing that component.
+With functions it would even be possible to add different state values 
+based or certain requirements (have correct permission, etc.).
+
+The footer would be a similar example. Except you could now add different contentcomponents 
+in there depending on the  current page or url. But also
+if and where to position itself and when to move or dissappear for example.
+Even the size, padding and colors would be defined at this level.
+
+If we would add a definition on the bare component it could be 
+like this: 
+- uuid
+- layer
+- attributes[]
+- functions[]
+- components[]
+
+We could say on page ABOUT and the HEADER BLOCK change the BUTTON COMPONENT to a certain color.
+We would have a way to navigate elements visable on the page with and without animation or with or without 3D
+perspectives used.
+
+The common elements that can be found in a third layer component container are
+the button, text, label, form, media, container, etc.
+
+So if this is now know and established, we can start 
+the discussion on which step and with it, which component 
+to build next. If a user wants for example to create four pages
+and all of the have the same exact header. You can now use the header compoment object
+to reference the same building block on all four pages can't you?
+Sticky or shrinking on scroll or change behavior when device width changes.
+All of this can be directly linked to step and component.
+
+A crude estimate of how someone would get started could be like this:
+
+Hallo computer, my application you build with me today, will 
+be named app. And App always has one page but could have more than
+one depending on how creative I get this session. There should also be A
+catchall page for pages that do not exist or when an error occurs.
+I only need authentication when people interact and 
+change the data, so hide these fuctions for our guests, would you?
+Now on the first page we should have a top, a bottom, an aside an a
+a main content sections, so atleast four container componets.
+The page has the background color of #909090 and a color for text with #090909.
+The size of the font we will determine when we have iteration the second so keep the defaulf of 
+16px or 1rem. And do make those text content components shrink and grow depeding on their surfuce
+area available for its square and the length and size of characters.
+But never lower the the extra small default. Please use a pleasant font
+for trial and next iteration we will discuss it further when needed, so
+do expect another iteration afther this first and then keep rolling with build steps and asking which component comes next. 
+**I am building the four PAGES and all of the share the same HEADER and in that HEADER there is atleast on IMAGE of a logo on the left and a BUTTON on the right for clicking to the next PAGE, oh the page has these colors and font styles and the header has these cause its a header.**.
+Round 2:
+Make the header always stay on top no matter the content or PAGE lenght.
+BESIDE(aside) there is a little MENU for selecting the correct PAGE but it touches the top because of the full width HEADER that is fixed.
+but the FOOTER is a different case. That is just an extension of the MAIN content components
+and is just a darker area with fixed content depending on the current PAGE. But The MAIN content
+width is also always the width of the FOOTER and the ASIDE touches the bottom of the PAGE always. And changes 
+position on the page from on the left side to the right side with LTR or RTL in reverse. The same goes for the written texts if they match that way of writing.
+The IMAGE can just be the /assets/image.png placeholder and be no larger than 1cm or about 50px. with padding that should give us a not too large fixed HEADING
+The LABEL on the BUTTON on the right can be changed to the value: "Next hoor"
+**And I go edit the HEADER components by selecting its included components and their subcomponents. Creating an IMG with css accordingly and changed the text of the LABEL of the BUTTON to that text specified.**
+Round 3:
+The button, I must admin I have not tested it yet, but does the function already work?
+If I click it, will it update the route with the next PAGE? And are the PAGES titled correct?
+**On such a event as a click function on click, user interaction, trigger function I should verify back before continueing, so let me be a wise AI and come up with at least two implementation version of whatever the function of the button was. Then he or she could always say no thats not it or incorrect even. These kind of questions are making the absolute difference so start asking them. Use Ethereum's smart contract for all I care.**
+Round 4:
+No thats not it entirely because let me be a human and I forgot to tell you after this PAGE labeled as such and such is the last PAGE and then the first PAGE needs to be shown again. so do that and I'll check if it works.
+**Do it**
+Round 5:
+It works hoor, finally, but eventually we got it. Now thats the HEADER lets focus on the ASIDE with its MENU which should be a BUTTON and a LABEL that links and navigates to the correct PAGE.
+**Add on PAGE a HEADER, IMAGE, BUTTON, LABEL, ASIDE, MENU, BUTTON+LABEL x 4, MAIN, FOOTER. Not just estimating or generalizing the best global average estimation of the CSS and bezier curves. But nailing them because of the visual image and its relation to the stuff learned up top, am I right**
+

@@ -1,0 +1,109 @@
+:root {
+    --background: #1d1e18;
+    --text: #dcdcdc;
+}
+
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100%;
+    min-width: 100%;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+}
+
+.bottom-bar {
+    background: #000;
+    height: 1rem;
+    width: 40%;
+    position: fixed;
+    display: flex;
+    justify-self: center;
+    bottom: 25%;
+    border-radius: 1rem;
+    animation: barfalling 2s ease-in-out 1s forwards;
+}
+
+.topbar {
+    background: #000;
+    height: 50%;
+    width: 1rem;
+    position: fixed;
+    display: flex;
+    justify-self: center;
+    bottom: 25%;
+    border-radius: 1rem;
+    animation: barfalling 2.5s ease-in-out 0.5s forwards;
+}
+
+.weighbar {
+    background: #000;
+    height: 1rem;
+    width: 60%;
+    position: fixed;
+    display: flex;
+    justify-self: center;
+    bottom: 70%;
+    border-radius: 1rem;
+    animation: barfalling 5s ease-in-out 1s forwards;
+}
+
+.bakkie-1,
+.bakkie-2 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 3rem;
+    width: 22rem;
+    position: fixed;
+    display: flex;
+    justify-self: center;
+    bottom: 40%;
+    opacity: 0;
+    transform: translateX(-50%);
+    border-radius: 0 0 1rem 1rem;
+    animation: barfalling 3s ease-in-out 1s forwards;
+}
+
+.bakkie-1 {
+    background: #09a322;
+    left: 56%;
+}
+
+.bakkie-2 {
+    background: #972a2a;
+    left: 12.5%;
+}
+
+.chain-weigh-bakkie-1,
+.chain-weigh-bakkie-2 {
+    width: 4px;
+    background: repeating-linear-gradient(to bottom, #555, #555 5px, transparent 5px, transparent 8px);
+    position: fixed;
+    bottom: 40%;
+    height: 30%;
+    z-index: -1;
+    animation: barfalling 3s ease-in-out 1s forwards;
+}
+
+.chain-weigh-bakkie-1 {
+    left: 58%;
+}
+
+.chain-weigh-bakkie-2 {
+    left: 15%;
+}
+
+@keyframes barfalling {
+    0% {
+        opacity: 0;
+        transform: translateY(-3000%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

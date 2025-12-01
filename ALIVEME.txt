@@ -1,0 +1,4 @@
+With your new instructions ready, try this.
+The first page, the initial route, is this index.html.
+Select the bottom-bar component and add rounded corners to it.
+And you click on in the color turns from black to red.
