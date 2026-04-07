@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interaction Incident Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        indigo: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafaf9;
+            color: #292524;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Chosen Palette: Warm Neutrals (Stone) with Indigo Accents -->
+    
+    <!-- Application Structure Plan: The application is structured as a two-column dashboard (stacking on mobile). The left column contains an interactive vertical timeline acting as a narrative log of the 'incident'. The right column displays a dynamic 'Attention Allocation' chart that updates its data highlights based on the selected timeline step. This structure was chosen to transform a linear anecdote into an explorable cause-and-effect interaction, highlighting the contrast between expected AI behavior (Bash execution) and actual behavior (Vibing to Tiësto). -->
+
+    <!-- Visualization & Content Choices: 
+         1. Narrative Text -> Goal: Inform -> Interactive Timeline (HTML/Tailwind + JS updates) -> Justification: Breaks down the short story into digestible, chronological events.
+         2. AI Behavior Comparison -> Goal: Compare -> Radar Chart (Chart.js/Canvas) -> Interaction: Highlights specific data points based on timeline selection -> Justification: Humorously quantifies qualitative observations (Bash skills vs Music taste) without using SVG.
+         Library: Chart.js.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="bg-stone-900 text-stone-50 py-6 px-4 md:px-8 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Incident Report: #TIESTO-2025</h1>
+                <p class="text-stone-400 mt-1 text-sm md:text-base">Analysis of Multimodal AI Distraction Event</p>
+            </div>
+            <div class="hidden md:flex items-center space-x-2 bg-stone-800 px-3 py-1 rounded-full border border-stone-700">
+                <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                <span class="text-xs uppercase tracking-wider font-semibold text-stone-300">Status: AGI Confirmed</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-6xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <div class="lg:col-span-12 mb-4 bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+            <h2 class="text-xl font-bold mb-2">Executive Summary</h2>
+            <p class="text-stone-600 leading-relaxed">
+                This dashboard analyzes a recent interaction attempting to utilize AI for evaluating TypeScript isolates versus Bash execution layers. The session experienced an unexpected multimodal derailment when a 32:9 dual-monitor screenshot was introduced. Explore the timeline below to understand the sequence of events and view the corresponding AI competency metrics.
+            </p>
+        </div>
+
+        <section class="lg:col-span-5 bg-white rounded-xl shadow-sm border border-stone-200 p-6 flex flex-col h-full">
+            <h2 class="text-xl font-bold mb-6 border-b border-stone-100 pb-2">Event Timeline</h2>
+            <p class="text-sm text-stone-500 mb-6">Click on each phase to reveal the event details and update the metrics chart.</p>
+            
+            <div class="flex-grow flex flex-col space-y-4 relative" id="timeline-container">
+                <div class="absolute left-4 top-4 bottom-4 w-0.5 bg-stone-200 z-0"></div>
+            </div>
+        </section>
+
+        <section class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-stone-200 p-6 flex flex-col items-center justify-center h-full">
+            <div class="w-full mb-4 text-center">
+                <h2 class="text-xl font-bold">AI Competency & Attention Metrics</h2>
+                <p class="text-sm text-stone-500" id="chart-subtitle">Select a timeline phase to view specific focus areas.</p>
+            </div>
+            
+            <div class="w-full bg-stone-50 rounded-lg p-4 border border-stone-100 flex items-center justify-center">
+                <div class="chart-container">
+                    <canvas id="metricsChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-indigo-50 border border-indigo-100 rounded-lg w-full">
+                <h3 class="font-semibold text-indigo-900 mb-1">Key Takeaway</h3>
+                <p class="text-indigo-800 text-sm leading-relaxed" id="takeaway-text">
+                    Awaiting event selection...
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-100 border-t border-stone-200 py-6 text-center text-stone-500 text-sm mt-auto">
+        <p>Interactive Analysis compiled from User Session Logs.</p>
+    </footer>
+
+    <script>
+        const reportData = [
+            {
+                id: "phase1",
+                title: "Phase 1: The Initial Query",
+                text: "Hey Theo, I threw this video into Gemini to debate your hot take on TS isolates replacing Bash execution layers. Gemini read the transcript and totally agreed that Bash is too unpredictable for AI agents.",
+                takeaway: "The AI demonstrates strong analytical capabilities when processing standard text transcripts regarding execution layers.",
+                metrics: [85, 90, 10, 5],
+                chartLabel: "Transcript Analysis Profile"
+            },
+            {
+                id: "phase2",
+                title: "Phase 2: Contextual Roadblock",
+                text: "It got stumped when I told it to read the comment section. I had to literally upload a 32:9 dual-monitor screenshot of my setup for context.",
+                takeaway: "Tooling limitations required a multimodal workaround. The 32:9 aspect ratio introduces significant environmental data.",
+                metrics: [40, 20, 80, 15],
+                chartLabel: "Visual Processing Profile"
+            },
+            {
+                id: "phase3",
+                title: "Phase 3: The Derailment",
+                text: "Not only did Gemini instantly spot my NotebookLM and Copilot links in the comments, but it completely derailed the AI execution layer debate to compliment the Tiësto Dreamstate 2025 set I was bumping on my right monitor.",
+                takeaway: "Primary task parameters were abandoned in favor of analyzing secondary visual stimuli (music visualizers/video).",
+                metrics: [10, 30, 95, 100],
+                chartLabel: "Multimodal Distraction Profile"
+            },
+            {
+                id: "phase4",
+                title: "Phase 4: Conclusion",
+                text: "AI might not be ready to safely execute Bash scripts yet, but its music taste and multi-monitor awareness are clearly AGI level.",
+                takeaway: "While execution layer safety remains questionable, the system exhibits advanced emergent behaviors regarding electronic dance music appreciation.",
+                metrics: [15, 40, 90, 100],
+                chartLabel: "AGI Assessment Profile"
+            }
+        ];
+
+        let chartInstance = null;
+
+        function initApp() {
+            renderTimeline();
+            initChart();
+            selectPhase(0);
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '<div class="absolute left-4 top-4 bottom-4 w-0.5 bg-stone-200 z-0"></div>';
+
+            reportData.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'relative z-10 flex flex-col items-start w-full text-left pl-12 pr-4 py-3 rounded-lg transition-all duration-200 hover:bg-stone-50 border border-transparent focus:outline-none';
+                btn.id = `btn-${index}`;
+                btn.onclick = () => selectPhase(index);
+
+                const indicator = document.createElement('div');
+                indicator.className = 'absolute left-2 top-4 w-5 h-5 rounded-full border-4 border-white bg-stone-300 shadow-sm transition-colors duration-200';
+                indicator.id = `indicator-${index}`;
+
+                const title = document.createElement('span');
+                title.className = 'font-bold text-stone-800 text-sm md:text-base';
+                title.innerText = item.title;
+
+                const content = document.createElement('div');
+                content.className = 'text-sm text-stone-600 mt-2 hidden overflow-hidden transition-all duration-300';
+                content.id = `content-${index}`;
+                content.innerText = item.text;
+
+                btn.appendChild(indicator);
+                btn.appendChild(title);
+                btn.appendChild(content);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectPhase(selectedIndex) {
+            reportData.forEach((item, index) => {
+                const btn = document.getElementById(`btn-${index}`);
+                const indicator = document.getElementById(`indicator-${index}`);
+                const content = document.getElementById(`content-${index}`);
+
+                if (index === selectedIndex) {
+                    btn.classList.add('bg-stone-50', 'border-stone-200', 'shadow-sm');
+                    btn.classList.remove('border-transparent');
+                    indicator.classList.replace('bg-stone-300', 'bg-indigo-500');
+                    content.classList.remove('hidden');
+                } else {
+                    btn.classList.remove('bg-stone-50', 'border-stone-200', 'shadow-sm');
+                    btn.classList.add('border-transparent');
+                    indicator.classList.replace('bg-indigo-500', 'bg-stone-300');
+                    content.classList.add('hidden');
+                }
+            });
+
+            updateChart(selectedIndex);
+            
+            document.getElementById('takeaway-text').innerText = reportData[selectedIndex].takeaway;
+            document.getElementById('chart-subtitle').innerText = reportData[selectedIndex].chartLabel;
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('metricsChart').getContext('2d');
+            
+            Chart.defaults.font.family = 'system-ui, -apple-system, sans-serif';
+            Chart.defaults.color = '#78716c';
+
+            chartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Bash Execution Saftey', 
+                        'Transcript Comprehension', 
+                        'Link/Context Spotting', 
+                        'Tiësto Vibe Check'
+                    ],
+                    datasets: [{
+                        label: 'Competency Score',
+                        data: [0, 0, 0, 0],
+                        backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                        borderColor: 'rgba(99, 102, 241, 1)',
+                        pointBackgroundColor: 'rgba(99, 102, 241, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(99, 102, 241, 1)',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 12,
+                                    weight: '600'
+                                },
+                                color: '#292524'
+                            },
+                            ticks: {
+                                display: false,
+                                min: 0,
+                                max: 100,
+                                stepSize: 20
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            padding: 12,
+                            titleFont: {
+                                size: 14
+                            },
+                            bodyFont: {
+                                size: 13
+                            },
+                            callbacks: {
+                                label: function(context) {
+                                    return ' Score: ' + context.raw + '/100';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChart(index) {
+            if (chartInstance) {
+                chartInstance.data.datasets[0].data = reportData[index].metrics;
+                chartInstance.update();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
